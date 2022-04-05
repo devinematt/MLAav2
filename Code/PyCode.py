@@ -1,8 +1,8 @@
 import cv2 as cv
 import numpy as np
 
-green_img = cv.imread('green3.jpg', cv.IMREAD_UNCHANGED)
-full_img = cv.imread('full2.jpg', cv.IMREAD_UNCHANGED)
+green_img = cv.imread('blue4.jpg', cv.IMREAD_UNCHANGED)
+full_img = cv.imread('full3.jpg', cv.IMREAD_UNCHANGED)
 
 result = cv.matchTemplate(full_img, green_img, cv.TM_CCOEFF_NORMED)
 
@@ -13,7 +13,7 @@ min_val, max_val, min_loc, max_loc = cv.minMaxLoc(result)
 print('Best match top left position: %s' % str(max_loc))
 print('Best match confidence: %s' % max_val)
 
-threshold = 0.8
+threshold = 0.1
 if max_val >= threshold:
     print('Found needle.')
 else:
@@ -26,4 +26,4 @@ cv.rectangle(full_img, top_left, bottom_right, color=(0, 255, 0), thickness=2, l
 
 cv.imshow('Result', full_img)
 cv.waitKey()
-cv.imwrite('result.jpg', full_img)
+cv.imwrite('result2.jpg', full_img)
